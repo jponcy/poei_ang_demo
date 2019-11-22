@@ -1,23 +1,25 @@
 <ng-template #loading>
   <app-loader></app-loader>
-  <app-loader text="Salut"></app-loader>
+  <!-- <app-loader text="Salut"></app-loader>
   <app-loader [text]="'Salut'"></app-loader>
-  <app-loader></app-loader>
+  <app-loader></app-loader> -->
 </ng-template>
 
 <ng-template #noData>
   <p class="text text-warning">Aucune tâche trouvée.</p>
 </ng-template>
 
-<ng-container *ngIf="todos; else loading">
+<ng-container *ngIf="filteredTodos; else loading">
   <div class="actions">
     <button>Ajouter une tâche</button>
     <button>Supprimer tâche finies</button>
   </div>
 
-  <table *ngIf="todos.length; else noData">
+  <p>Affichage de {{ (filteredTodos || []).length }} / {{ total }} tâches.</p>
+
+  <table *ngIf="filteredTodos.length; else noData">
     <tbody>
-      <tr *ngFor="let t of todos; index as i" [ngClass]="{done: t.finished}">
+      <tr *ngFor="let t of filteredTodos; index as i" [ngClass]="{done: t.finished}">
         <td><input type="checkbox" name="close-{{ i }}" [checked]="t.finished"></td>
         <td>{{ t.label }}</td>
         <td><button>Supprimer</button></td>

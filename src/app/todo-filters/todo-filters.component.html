@@ -1,22 +1,22 @@
-<form >
+<form (submit)="onSubmit()">
   <fieldset>
     <legend>Filtres</legend>
 
     <div class="fields">
       <div>
-        <label for="filter-name">Nom</label>
-        <input (change)="changeName($event.target.value)" name="name" type="text" id="filter-name">
+        <label for="filter-name">Le libellé contient</label>
+        <input (change)="onNameChange($event.target.value)" name="name" type="text" id="filter-name" autocomplete="off">
       </div>
 
       <div>
-        <label for="filter-finished">Terminé</label>
-        <input name="finished" type="checkbox" id="filter-finished" value="true">
+        <label for="filter-finished">Affiché tâches finies</label>
+        <input (change)="onFinishedChange($event.target.checked)" name="finished" type="checkbox" id="filter-finished" checked="checked">
       </div>
     </div>
 
     <div class="actions">
-      <input type="reset" value="RAZ">
-      <input type="submit" value="Filtrer">
+      <input type="reset" value="RAZ" (click)="onReset()">
+      <!-- <input type="submit" value="Filtrer"> -->
     </div>
   </fieldset>
 </form>
