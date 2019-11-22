@@ -14,8 +14,8 @@
 
   <table *ngIf="todos.length; else noData">
     <tbody>
-      <tr *ngFor="let t of todos; index as i" [ngClass]="{finished: t.finished}">
-        <td><input type="checkbox" name="close-{{ i }}"></td>
+      <tr *ngFor="let t of todos; index as i" [ngClass]="{done: t.finished}">
+        <td><input type="checkbox" name="close-{{ i }}" [checked]="t.finished"></td>
         <td>{{ t.label }}</td>
         <td><button>Supprimer</button></td>
       </tr>

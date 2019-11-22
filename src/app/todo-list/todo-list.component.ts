@@ -1,12 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 
+interface Task {
+  id: number;
+  label: string;
+  finished: boolean;
+}
+
 let id = 0;
 const gen = (label: string, finished = false) => ({
   id: ++id,
   label,
   finished
 });
-const allTodos = [
+const allTodos: Task[] = [
   gen('Apprendre le Typescript', true),
   gen('Apprendre le SASS', true),
   gen('Faire notre première application Angular', true),
@@ -16,7 +22,6 @@ const allTodos = [
   gen('Voir rxjs')
 ];
 
-
 @Component({
   selector: 'app-todo-list',
   templateUrl: './todo-list.component.html',
@@ -24,7 +29,7 @@ const allTodos = [
 })
 export class TodoListComponent implements OnInit {
 
-  todos = null;
+  todos: Task[] = null;
 
   ngOnInit() {
     setTimeout(() => {
