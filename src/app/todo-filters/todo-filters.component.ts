@@ -11,4 +11,8 @@ export class TodoFiltersComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  changeName(name: string) {
+    console.log('New name', name);
+  }
 }

@@ -5,7 +5,7 @@
     <div class="fields">
       <div>
         <label for="filter-name">Nom</label>
-        <input name="name" type="text" id="filter-name">
+        <input (change)="changeName($event.target.value)" name="name" type="text" id="filter-name">
       </div>
 
       <div>
