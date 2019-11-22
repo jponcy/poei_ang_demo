@@ -1,0 +1,16 @@
+@import 'vars';
+@import 'actions';
+
+.actions {
+  @extend %actions;
+}
+
+table {
+  width: 100%;
+
+  .finished {
+    text-decoration: line-through;
+    font-style: italic;
+    color: $finished;
+  }
+}

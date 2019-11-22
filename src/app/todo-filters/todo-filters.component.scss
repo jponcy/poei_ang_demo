@@ -1,0 +1,24 @@
+@import 'actions';
+@import 'media';
+
+fieldset {
+  .fields {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+
+    div {
+      margin: 10px;
+
+      label::after {
+        margin-right: 5px;
+        content: ' : ';
+        font-weight: 150;
+      }
+    }
+  }
+
+  .actions {
+    @extend %actions;
+  }
+}
