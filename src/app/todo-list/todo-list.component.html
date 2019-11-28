@@ -12,17 +12,17 @@
 <ng-container *ngIf="filteredTodos; else loading">
   <div class="actions">
     <button>Ajouter une tâche</button>
-    <button>Supprimer tâche finies</button>
+    <button (click)="onPurge()">Supprimer tâche finies</button>
   </div>
 
   <p>Affichage de {{ (filteredTodos || []).length }} / {{ total }} tâches.</p>
 
   <table *ngIf="filteredTodos.length; else noData">
     <tbody>
-      <tr *ngFor="let t of filteredTodos; index as i" [ngClass]="{done: t.finished}">
+      <tr *ngFor="let t of filteredTodos; index as i" [ngClass]="{done: t.finished}" (click)="onTodoClick(i)">
         <td><input type="checkbox" name="close-{{ i }}" [checked]="t.finished"></td>
         <td>{{ t.label }}</td>
-        <td><button>Supprimer</button></td>
+        <td><button (click)="onDelete($event, i)">Supprimer</button></td>
       </tr>
     </tbody>
   </table>

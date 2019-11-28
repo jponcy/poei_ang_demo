@@ -54,6 +54,32 @@ export class TodoListComponent implements OnInit {
     return (this.todos || []).length;
   }
 
+  onTodoClick(todoIndex: number) {
+    const todo = this.filteredTodos[todoIndex];
+
+    todo.finished = !todo.finished;
+
+    this.applyFilter();
+  }
+
+  onDelete(event, index: number) {
+    event.stopPropagation();
+
+    this.filteredTodos.splice(index, 1);
+  }
+
+  onPurge() {
+    // for (let i = this.todos.length - 1; i >= 0; i --) {
+    //   if (this.todos[i].finished) {
+    //     this.todos.splice(i, 1);
+    //   }
+    // }
+    // Ou.
+    this.todos = this.todos.filter(t => !t.finished);
+
+    this.applyFilter();
+  }
+
   private applyFilter() {
     if (!this.todos) { return; }
 
