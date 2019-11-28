@@ -12,7 +12,6 @@ export class AppComponent {
 
   /** Called when filters form declares has a change. */
   onFilterChanges(values: TodoFilters) {
-    console.log('onFilterChanges', values);
     this.filters = values;
   }
 }

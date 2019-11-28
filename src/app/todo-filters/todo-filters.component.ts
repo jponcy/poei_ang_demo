@@ -44,5 +44,7 @@ export class TodoFiltersComponent implements OnInit {
     this.filter.emit(this.data);
   }
 
-  onSubmit() {}
+  onSubmit(event) {
+    event.preventDefault();
+  }
 }
