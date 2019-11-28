@@ -1,44 +1,37 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { of } from 'rxjs';
-import { delay, tap } from 'rxjs/operators';
-import { Todo } from './../todo';
-import { TodoFilters } from './../todo-filters';
-
-let id = 0;
-const gen = (label: string, finished = false) => ({
-  id: ++id,
-  label,
-  finished
-});
-const allTodos: Todo[] = [
-  gen('Apprendre le Typescript', true),
-  gen('Apprendre le SASS', true),
-  gen('Faire notre première application Angular', true),
-  gen('Ajouter plusieurs composants'),
-  gen('Passer un paramètre d\'entré'),
-  gen('Utiliser un événement de sortie'),
-  gen('Voir rxjs')
-];
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Todo } from '../todo';
+import { TodoApiService } from '../todo-api.service';
+import { TodoFilters } from '../todo-filters';
 
 @Component({
   selector: 'app-todo-list',
   templateUrl: './todo-list.component.html',
   styleUrls: ['./todo-list.component.scss']
 })
-export class TodoListComponent implements OnInit {
+export class TodoListComponent implements OnInit, OnDestroy {
 
   private filters: TodoFilters;
 
   private todos: Todo[] = null;
 
   filteredTodos: Todo[] = null;
+  sub: Subscription;
+
+  constructor(private api: TodoApiService) {
+  }
 
   ngOnInit() {
-    of(allTodos)
-      .pipe(
-        delay(1_000),
-        tap(data => this.todos = data))
-      .subscribe(() => this.applyFilter());
+    this.api
+        .getAll()
+        .subscribe(data => this.receiveTodoList(data));
+  }
+
+  ngOnDestroy() {
+    if (this.sub) {
+      this.sub.unsubscribe();
+      this.sub = null;
+    }
   }
 
   @Input('filters')
@@ -101,5 +94,10 @@ export class TodoListComponent implements OnInit {
     } else {
       this.filteredTodos = this.todos;
     }
+  }
+
+  private receiveTodoList(data: Todo[]) {
+    this.todos = data;
+    this.applyFilter();
   }
 }

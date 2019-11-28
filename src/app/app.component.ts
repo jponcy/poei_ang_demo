@@ -1,5 +1,5 @@
-import { TodoFilters } from './todo-filters';
 import { Component } from '@angular/core';
+import { TodoFilters } from './todo/todo-filters';
 
 @Component({
   selector: 'app-root',
