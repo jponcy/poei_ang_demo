@@ -3,3 +3,8 @@ export interface Todo {
   label: string;
   finished: boolean;
 }
+
+export interface TodoFormDTO {
+  label: string;
+  finished: boolean;
+}

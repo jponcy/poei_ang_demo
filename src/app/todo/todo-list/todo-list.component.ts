@@ -34,8 +34,7 @@ export class TodoListComponent implements OnInit, OnDestroy {
     }
   }
 
-  @Input('filters')
-  set setFilters(filters: TodoFilters) {
+  onFilter(filters: TodoFilters) {
     if (filters) {
       filters.name = (filters.name || '').trim().toLowerCase();
       this.filters = filters;
@@ -58,7 +57,13 @@ export class TodoListComponent implements OnInit, OnDestroy {
   onDelete(event, index: number) {
     event.stopPropagation();
 
-    this.filteredTodos.splice(index, 1);
+    const todos = this.filteredTodos.splice(index, 1);
+
+    // this.api
+    //     .deleteOne(todoId)
+    //     .subscribe();
+
+    // ;
   }
 
   onPurge() {

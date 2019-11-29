@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TodoModule } from './todo/todo.module';
 import { SharedModule } from './shared/shared.module';
+import { TodoModule } from './todo/todo.module';
+import { PagesModule } from './pages/pages.module';
 
 @NgModule({
   declarations: [
@@ -11,6 +13,7 @@ import { SharedModule } from './shared/shared.module';
   ],
   imports: [
     BrowserModule,
+    PagesModule,
     AppRoutingModule,
     TodoModule,
     SharedModule

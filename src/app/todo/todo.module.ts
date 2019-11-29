@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { TodoFiltersComponent } from './todo-filters/todo-filters.component';
 import { TodoListComponent } from './todo-list/todo-list.component';
 import { SharedModule } from '../shared/shared.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -10,11 +11,11 @@ import { SharedModule } from '../shared/shared.module';
     TodoListComponent
   ],
   imports: [
+    HttpClientModule,
     CommonModule,
     SharedModule
   ],
   exports: [
-    TodoFiltersComponent,
     TodoListComponent
   ]
 })

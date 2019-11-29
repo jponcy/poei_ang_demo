@@ -1,34 +1,35 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { of } from 'rxjs';
-import { delay } from 'rxjs/operators';
-import { Todo } from './todo';
+import { environment } from 'src/environments/environment';
+import { Todo, TodoFormDTO } from './todo';
 
-let id = 0;
-const gen = (label: string, finished = false) => ({
-  id: ++id,
-  label,
-  finished
-});
-
-const allTodos: Todo[] = [
-  gen('Apprendre le Typescript', true),
-  gen('Apprendre le SASS', true),
-  gen('Faire notre première application Angular', true),
-  gen('Ajouter plusieurs composants'),
-  gen('Passer un paramètre d\'entré'),
-  gen('Utiliser un événement de sortie'),
-  gen('Voir rxjs')
-];
+const URL = `${environment.apiUrl}/todo`;
 
 @Injectable({
   providedIn: 'root'
 })
 export class TodoApiService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   getAll() {
-    return of(allTodos)
-      .pipe(delay(1_000));
+    return this.http.get<Todo[]>(URL);
+  }
+
+  getOne(id: number) {
+    // return this.http.get<Todo>(URL + '/' + id);
+    return this.http.get<Todo>(`${URL}/${id}`);
+  }
+
+  deleteOne(id: number) {
+    return this.http.delete<void>(`${URL}/${id}`);
+  }
+
+  createOne(data: TodoFormDTO) {
+    return this.http.post<Todo>(URL, data);
+  }
+
+  updateOne(id: number, data: TodoFormDTO) {
+    return this.http.put<Todo>(`${URL}/${id}`, data);
   }
 }
