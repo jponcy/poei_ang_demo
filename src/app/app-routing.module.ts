@@ -1,10 +1,21 @@
+import { UserDetailsComponent } from './user/user-details/user-details.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { TodoListComponent } from './todo/todo-list/todo-list.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { UserListComponent } from './user/user-list/user-list.component';
 
 const routes: Routes = [
   { path: 'todo', component: TodoListComponent },
+  {
+    path: 'user',
+    children: [
+      { path: '',    component: UserListComponent, pathMatch: 'full' },
+      { path: ':id', component: UserDetailsComponent }
+    ]
+  },
+  // { path: 'user',     component: UserListComponent },
+  // { path: 'user/:id', component: UserDetailsComponent },
   { path: '',     redirectTo: 'todo', pathMatch: 'full' },
   { path: '**',   component: NotFoundComponent }
 ];

@@ -1,0 +1,15 @@
+section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  article {
+    cursor: pointer;
+    min-width: 200px;
+    width: 20%;
+    border: 1px solid silver;
+    border-radius: 15px;
+    margin: 5px;
+    padding: 5px;
+  }
+}

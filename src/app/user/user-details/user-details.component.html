@@ -1,0 +1,9 @@
+<ng-template #loading><app-loader></app-loader></ng-template>
+
+<article *ngIf="(user$ | async) as u; else loading">
+  <h1>Informations de {{ u.username }}</h1>
+
+  <img *ngIf="u.avatar" src="{{ u.avatar }}" alt="avatar de {{ u.username }}">
+
+  <p>{{ u.username }} travail en tant que {{ u.job }}.</p>
+</article>

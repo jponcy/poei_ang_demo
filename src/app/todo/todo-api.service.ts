@@ -32,4 +32,8 @@ export class TodoApiService {
   updateOne(id: number, data: TodoFormDTO) {
     return this.http.put<Todo>(`${URL}/${id}`, data);
   }
+
+  purge() {
+    return this.http.delete<Todo[]>(URL);
+  }
 }

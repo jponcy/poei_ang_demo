@@ -1,3 +1,5 @@
+import { UserDetailsModule } from './user/user-details/user-details.module';
+import { UserListModule } from './user/user-list/user-list.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -6,6 +8,7 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { TodoModule } from './todo/todo.module';
 import { PagesModule } from './pages/pages.module';
+import { UserModule } from './user/user.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +19,10 @@ import { PagesModule } from './pages/pages.module';
     PagesModule,
     AppRoutingModule,
     TodoModule,
-    SharedModule
+    UserDetailsModule,
+    UserListModule,
+    SharedModule,
+    UserModule
   ],
   providers: [],
   bootstrap: [AppComponent]

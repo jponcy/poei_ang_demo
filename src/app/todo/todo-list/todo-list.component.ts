@@ -57,25 +57,19 @@ export class TodoListComponent implements OnInit, OnDestroy {
   onDelete(event, index: number) {
     event.stopPropagation();
 
-    const todos = this.filteredTodos.splice(index, 1);
+    this.filteredTodos.splice(index, 1);
 
-    // this.api
-    //     .deleteOne(todoId)
-    //     .subscribe();
-
-    // ;
+    // if (todos && todos.length === 1) {
+    //   this.api
+    //       .deleteOne(todos[0].id)
+    //       .subscribe();
+    // }
   }
 
   onPurge() {
-    // for (let i = this.todos.length - 1; i >= 0; i --) {
-    //   if (this.todos[i].finished) {
-    //     this.todos.splice(i, 1);
-    //   }
-    // }
-    // Ou.
-    this.todos = this.todos.filter(t => !t.finished);
-
-    this.applyFilter();
+    this.api
+        .purge()
+        .subscribe(data => this.receiveTodoList(data));
   }
 
   private applyFilter() {
