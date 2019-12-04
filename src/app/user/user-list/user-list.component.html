@@ -8,6 +8,8 @@
   </p>
 </ng-template>
 
+<button [routerLink]="'create'">Créer</button>
+
 <section *ngIf="(users$ | async) as users; else loading">
   <ng-container *ngIf="users.length; else noData">
     <article *ngFor="let u of users" [routerLink]="[u.id]">

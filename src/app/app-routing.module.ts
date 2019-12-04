@@ -4,14 +4,16 @@ import { Routes, RouterModule } from '@angular/router';
 import { TodoListComponent } from './todo/todo-list/todo-list.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { UserListComponent } from './user/user-list/user-list.component';
+import { UserFormReactiveComponent } from './user/user-form/user-form-reactive/user-form-reactive.component';
 
 const routes: Routes = [
   { path: 'todo', component: TodoListComponent },
   {
     path: 'user',
     children: [
-      { path: '',    component: UserListComponent, pathMatch: 'full' },
-      { path: ':id', component: UserDetailsComponent }
+      { path: '',       component: UserListComponent, pathMatch: 'full' },
+      { path: 'create', component: UserFormReactiveComponent },
+      { path: ':id',    component: UserDetailsComponent }
     ]
   },
   // { path: 'user',     component: UserListComponent },

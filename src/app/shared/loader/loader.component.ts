@@ -5,19 +5,17 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
   templateUrl: 'loader.component.html',
   styleUrls: ['loader.component.scss']
 })
-export class LoaderComponent implements OnInit {
+export class LoaderComponent {
   @Input()
   readonly text = 'Chargement...';
-
-  @Input()
-  private readonly animationDuration: number;
 
   @Output()
   private animationFinished = new EventEmitter<void>();
 
-  ngOnInit() {
-    if(this.animationDuration) {
-      setTimeout(() => this.animationFinished.emit(), this.animationDuration);
+  @Input()
+  set animationDuration(millis: number) {
+    if (millis) {
+      setTimeout(() => this.animationFinished.emit(), millis);
     }
   }
 }

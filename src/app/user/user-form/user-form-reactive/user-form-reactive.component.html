@@ -1,0 +1,17 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="form">
+  <input type="text" placeholder="Nom d'utilisateur" formControlName="username">
+
+  <!-- Sans Getter -->
+  <div [hidden]="form.controls['username'].valid && !form.controls['username'].pristine"></div>
+
+  <!-- Avec Getter -->
+  <p class="text text-error" [hidden]="name.valid || name.pristine && !name.touched">
+    Nom d'utilisateur requis.
+  </p>
+
+  <div *ngFor="let o of [1, 2, 3]">
+    <p>Coucou {{o}}</p>
+  </div>
+
+  <input type="submit" value="Créer">
+</form>

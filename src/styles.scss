@@ -1,6 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 @import 'vars';
 
-.text.text-warning {
-  color: $warning-color;
+$error: red !default;
+
+.text {
+  &.text-warning {
+    color: $warning-color;
+  }
+
+  &.text-error {
+    color: $error;
+  }
 }
