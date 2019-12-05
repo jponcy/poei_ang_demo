@@ -2,7 +2,7 @@
 
 <nav>
   <ul>
-    <li><a [routerLink]="['user']">users</a></li>
+    <li *ngIf="loggued"><a [routerLink]="['user']">users</a></li>
     <li><a [routerLink]="['todo']">todos</a></li>
   </ul>
 </nav>
